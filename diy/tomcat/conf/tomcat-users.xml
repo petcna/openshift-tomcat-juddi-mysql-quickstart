@@ -34,5 +34,10 @@
   <user username="role1" password="tomcat" roles="role1"/>
 -->
   <role rolename="manager-gui"/>
+  <role rolename="pluto"/>
   <user username="tomcat" password="openshift" roles="manager-gui"/>
+  <user username="root" password="root" roles="pluto,manager-gui"/>
+  <user username="uddi" password="uddi" roles="pluto,manager-gui"/>
+  <user username="sales" password="sales" roles="pluto,manager-gui"/>
+  <user username="marketing" password="marketing" roles="pluto,manager-gui"/>
 </tomcat-users>

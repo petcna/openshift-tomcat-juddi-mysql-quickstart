@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+<Resource
+	name="jdbc/juddiDB"
+	auth="Container"
+	type="javax.sql.DataSource"
+	username="juddi"
+	password="juddi"
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://OPENSHIFT_MYSQL_DB_HOST:OPENSHIFT_MYSQL_DB_PORT/juddi"
+/>
+</Context>

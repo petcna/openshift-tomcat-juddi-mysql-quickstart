@@ -5,6 +5,9 @@
 # ruby, etc.
 set -x
 if [ -d $OPENSHIFT_DATA_DIR/tomcat ]
+	# copy war files to the right place on server
+        cp -p $OPENSHIFT_REPO_DIR/diy/tomcat/webapps/*.war $OPENSHIFT_DATA_DIR/tomcat/webapps/
+
 then
     exit 0
 else
