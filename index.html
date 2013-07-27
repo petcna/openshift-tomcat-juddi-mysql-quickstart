@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Apache Tomcat and Juddi with MySQL on OpenShift by petcna</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Apache Tomcat and Juddi with MySQL on OpenShift</h1>
+        <h2>openshift tomcat juddi mysql quickstart</h2>
+        <a href="https://github.com/petcna/openshift-tomcat-juddi-mysql-quickstart" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="run-your-apache-tomcat-and-juddi-with-mysql-on-openshift" class="anchor" href="#run-your-apache-tomcat-and-juddi-with-mysql-on-openshift"><span class="octicon octicon-link"></span></a>Run your Apache Tomcat and Juddi with MySQL on OpenShift</h1>
+
+<p>This git repository helps you get up and running quickly with Apache Tomcat 7.0.42 and Juddi 3.1.5 with MySQL installations on OpenShift.</p>
+
+<h2>
+<a name="create-a-do-it-yourself-diy-app-on-openshift" class="anchor" href="#create-a-do-it-yourself-diy-app-on-openshift"><span class="octicon octicon-link"></span></a>Create a Do It Yourself (DIY) app on OpenShift</h2>
+
+<p><a href="https://openshift.redhat.com/app/account/new">Create an account</a> and install the <a href="https://www.openshift.com/developers/rhc-client-tools-install">command-line client tools</a>.</p>
+
+<p>Create a DIY application:</p>
+
+<pre><code>rhc app create tomcatjuddi diy-0.1 mysql-5.1 phpmyadmin-3.4
+</code></pre>
+
+<h2>
+<a name="configure-mysql" class="anchor" href="#configure-mysql"><span class="octicon octicon-link"></span></a>Configure MySQL</h2>
+
+<p>Go to your phpMyAdmin URL: http://tomcatjuddi-$yournamespace.rhcloud.com/phpmyadmin/</p>
+
+<p>Login with your MySQL credentials. Click on SQL tab at the top to run SQL query/queries on server.</p>
+
+<p>Type in the following commands; replacing $OPENSHIFT_MYSQL_DB_HOST appropriately and then click Go:</p>
+
+<pre><code>CREATE USER 'juddi'@'$OPENSHIFT_MYSQL_DB_HOST' IDENTIFIED BY 'juddi';
+CREATE DATABASE juddi;
+GRANT ALL PRIVILEGES ON juddi.* TO 'juddi'@'$OPENSHIFT_MYSQL_DB_HOST';
+</code></pre>
+
+<h2>
+<a name="get-the-quickstart-running" class="anchor" href="#get-the-quickstart-running"><span class="octicon octicon-link"></span></a>Get the quickstart running</h2>
+
+<p>Grab this quickstart project and make it work for you!</p>
+
+<pre><code>cd tomcatjuddi
+git remote add upstream -m master git://github.com/petcna/openshift-tomcat-juddi-quickstart.git
+git pull -s recursive -X theirs upstream master
+git push
+</code></pre>
+
+<p>That's it, you can now checkout your tomcat at: http://tomcatjuddi-$yournamespace.rhcloud.com</p>
+
+<p>Your juddi is available at: http://tomcatjuddi-$yournamespace.rhcloud.com/juddiv3</p>
+
+<p>Juddi user guide can be accessed from <a href="http://juddi.apache.org/docs/3.x/userguide/html/index.html">here</a>.</p>
+
+<p>Tutorial on how to publish a web service to juddi can be found <a href="http://thoughtsasaservice.wordpress.com/2011/08/27/how-to-publish-a-web-service-to-juddi">here</a>.</p>
+
+<p><a href="http://www.soapui.org">SoapUI</a> can be used to deal with juddi web services.</p>
+
+<p>Unfortunately, juddi portal is not available in this quickstart. It is planned to be added soon.</p>
+
+<p>By placing WARs (either WAR archives or exploded WARs) in the diy/tomcat/webapps folder, those applications will be deployed and redeployed upon each <code>git push</code>. Likewise, applications (including the sample applications provided by Tomcat) can be deleted from that folder so they will no longer be deployed.</p>
+
+<p>The default managing account is tomcat/openshift; this can be changed by altering the diy/tomcat/conf/tomcat-users.xml file, committing the change within your secure OpenShift Git account and issuing another <code>git push</code>.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to CC0 <a href="http://creativecommons.org/publicdomain/zero/1.0/"></a><a href="http://creativecommons.org/publicdomain/zero/1.0/">http://creativecommons.org/publicdomain/zero/1.0/</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/petcna/openshift-tomcat-juddi-mysql-quickstart/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/petcna/openshift-tomcat-juddi-mysql-quickstart/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/petcna/openshift-tomcat-juddi-mysql-quickstart"></a> is maintained by <a href="https://github.com/petcna">petcna</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-42774914-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
