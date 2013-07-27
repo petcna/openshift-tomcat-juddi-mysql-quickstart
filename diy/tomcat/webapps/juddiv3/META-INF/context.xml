@@ -8,6 +8,6 @@
 	username="juddi"
 	password="juddi"
 	driverClassName="com.mysql.jdbc.Driver"
-	url="jdbc:mysql://OPENSHIFT_MYSQL_DB_HOST:OPENSHIFT_MYSQL_DB_PORT/juddi"
+	url="jdbc:mysql://OPENSHIFT_MYSQL_DB_HOST:OPENSHIFT_MYSQL_DB_PORT/juddi?autoReconnect=true"
 />
 </Context>
